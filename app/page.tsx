@@ -2,18 +2,14 @@
 import { useState } from 'react';
 
 export default function Home() {
-  // حالة التنقل بين التطبيق العادي ولوحة التحكم السرية
   const [isAdminMode, setIsAdminMode] = useState(false);
   const [pinCode, setPinCode] = useState('');
   const [showPinModal, setShowPinModal] = useState(false);
-
-  // حالة واجهة التطبيق العادي (حجز الرحلات)
   const [lang, setLang] = useState('ar');
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [bookingStatus, setBookingStatus] = useState('');
 
-  // دالة التحقق من الرمز السري للمدير (مثال: 1986)
   const handleAdminLogin = (e: React.FormEvent) => {
     e.preventDefault();
     if (pinCode === '1986') {
@@ -25,7 +21,6 @@ export default function Home() {
     }
   };
 
-  // محاكاة حجز رحلة
   const handleBooking = (e: React.FormEvent) => {
     e.preventDefault();
     if (!from || !to) {
@@ -38,7 +33,6 @@ export default function Home() {
     }, 2000);
   };
 
-  // إذا تم الدخول للوحة التحكم السرية
   if (isAdminMode) {
     return (
       <div className="min-h-screen bg-gray-100 text-gray-800 p-6 font-sans" dir="rtl">
@@ -54,7 +48,6 @@ export default function Home() {
         </header>
 
         <main className="max-w-7xl mx-auto space-y-8">
-          {/* إحصائيات سريعة */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="bg-white p-5 rounded-xl shadow-sm border">
               <p className="text-xs text-gray-500 font-bold mb-1">السائقون النشطون</p>
@@ -74,7 +67,6 @@ export default function Home() {
             </div>
           </div>
 
-          {/* قسم إدارة السائقين وحماية التلاعب */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
             <div className="bg-white p-6 rounded-xl shadow-sm border">
               <h3 className="text-lg font-bold text-blue-900 mb-4">أرصدة السائقين الحالية (Solde 5%)</h3>
@@ -127,10 +119,8 @@ export default function Home() {
     );
   }
 
-  // واجهة التطبيق العادي (الزبناء والسائقين)
   return (
     <div className="min-h-screen bg-slate-900 text-white font-sans flex flex-col justify-between" dir="rtl">
-      {/* Navbar */}
       <nav className="p-4 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
         <div className="flex items-center space-x-2 space-x-reverse">
           <span className="text-xl">🚕</span>
@@ -142,7 +132,6 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero Section */}
       <main className="max-w-md mx-auto p-6 w-full flex-1 flex flex-col justify-center">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold mb-2">{lang === 'ar' ? 'رحلات آمنة في سلا والرباط' : 'Trajets sûrs à Salé & Rabat'}</h2>
@@ -170,17 +159,19 @@ export default function Home() {
         )}
       </main>
 
-      {/* Footer مع الزر السري المخفي للمدير */}
+      {/* Footer مع زر سري بمساحة نُقر كبيرة وواضحة */}
       <footer className="p-4 bg-slate-800 border-t border-slate-700 flex justify-between items-center text-xs text-slate-400">
         <p>&copy; 2026 Easy Travel - Salé & Rabat</p>
         
-        {/* زر سري مخفي في زاوية الموقع لا يراه إلا أنت */}
-        <button onClick={() => setShowPinModal(true)} className="text-slate-600 hover:text-slate-400 transition p-1" title="Admin Login">
-          🔒
+        <button 
+          onClick={() => setShowPinModal(true)} 
+          className="opacity-15 hover:opacity-100 transition p-3 text-slate-400 cursor-pointer" 
+          title="Admin"
+        >
+          <span className="text-base">🚗</span>
         </button>
       </footer>
 
-      {/* نافذة إدخال الرمز السري للمدير */}
       {showPinModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center p-4 z-50">
           <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700 max-w-xs w-full space-y-4">
