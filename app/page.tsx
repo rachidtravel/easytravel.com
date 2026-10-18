@@ -121,14 +121,23 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-slate-900 text-white font-sans flex flex-col justify-between" dir="rtl">
+      {/* شريط التنقل العلوي مع زر Admin واضح وباهظ */}
       <nav className="p-4 bg-slate-800 border-b border-slate-700 flex justify-between items-center">
         <div className="flex items-center space-x-2 space-x-reverse">
           <span className="text-xl">🚕</span>
           <h1 className="font-bold text-lg text-green-400">Easy Travel</h1>
         </div>
-        <div className="flex gap-2">
-          <button onClick={() => setLang('ar')} className={`px-2.5 py-1 rounded text-xs ${lang === 'ar' ? 'bg-green-600' : 'bg-slate-700'}`}>العربية</button>
-          <button onClick={() => setLang('fr')} className={`px-2.5 py-1 rounded text-xs ${lang === 'fr' ? 'bg-green-600' : 'bg-slate-700'}`}>Français</button>
+        <div className="flex items-center gap-3">
+          <button 
+            onClick={() => setShowPinModal(true)} 
+            className="bg-slate-700 hover:bg-slate-600 text-green-400 px-3 py-1.5 rounded-lg text-xs font-bold border border-green-500/30 transition flex items-center gap-1.5"
+          >
+            <span>🔐 Admin</span>
+          </button>
+          <div className="flex gap-1">
+            <button onClick={() => setLang('ar')} className={`px-2 py-1 rounded text-xs ${lang === 'ar' ? 'bg-green-600' : 'bg-slate-700'}`}>العربية</button>
+            <button onClick={() => setLang('fr')} className={`px-2.5 py-1 rounded text-xs ${lang === 'fr' ? 'bg-green-600' : 'bg-slate-700'}`}>Français</button>
+          </div>
         </div>
       </nav>
 
@@ -159,16 +168,8 @@ export default function Home() {
         )}
       </main>
 
-      <footer className="p-4 bg-slate-800 border-t border-slate-700 flex justify-between items-center text-xs text-slate-400">
+      <footer className="p-4 bg-slate-800 border-t border-slate-700 text-center text-xs text-slate-400">
         <p>&copy; 2026 Easy Travel - Salé & Rabat</p>
-        
-        <button 
-          onClick={() => setShowPinModal(true)} 
-          className="opacity-15 hover:opacity-100 transition p-3 text-slate-400 cursor-pointer" 
-          title="Admin"
-        >
-          <span className="text-base">🚗</span>
-        </button>
       </footer>
 
       {showPinModal && (
