@@ -159,7 +159,6 @@ export default function Home() {
         )}
       </main>
 
-      {/* Footer مع زر سري بمساحة نُقر كبيرة وواضحة */}
       <footer className="p-4 bg-slate-800 border-t border-slate-700 flex justify-between items-center text-xs text-slate-400">
         <p>&copy; 2026 Easy Travel - Salé & Rabat</p>
         
